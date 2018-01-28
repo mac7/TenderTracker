@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-#prozorro url, keyword is set manualy for now
+#tender platform url, keyword is set manualy for now
 url = "https://smarttender.biz/publichni-zakupivli-prozorro/search="
 headers = {'User-Agent':'Mozilla/5.0'}
 
@@ -12,19 +12,14 @@ def pageFinder(url, headers, key):
 	#get raw smarttender page
 	webPage = requests.get(url+key, headers=headers)
 
-	#cteat object to parse web page
+	#create object to parse web page
 	soup = BeautifulSoup(webPage.text, "html.parser")
 
 	#finding page links and count of pages
 	numberOfPages = soup.find('div', attrs = {'id' : 'MainContent_MainContent_MainContent_Pager'}).get_text().strip()
 
-	#creating page list
-	pages = []
-
-	for page in numberOfPages:
-		pages.append(page)
-
-	return pages
+	#return count of pages
+    return numberOfPages
 
 
 def check(keys):
