@@ -1,0 +1,24 @@
+conda install -c anaconda cx_oracle
+conda install -c anaconda oracle-instantclient
+
+connstr = 'scott/tiger@server:1521/orcl'
+conn = cx_Oracle.connect(connstr)
+
+sudo apt-get install libaio1 libaio-dev
+
+###################################################
+import cx_Oracle
+conn = None
+try:
+    conn = cx_Oracle.connect("scott/tiger@oracle")
+
+    try:
+        curs = conn.cursor()
+        curs.execute("SELECT dummy FROM sys.dual")
+        print curs.fetchone()[0]
+    finally:
+        curs.close()
+finally:
+    if conn is not None:
+        conn.close()
+###################################################
