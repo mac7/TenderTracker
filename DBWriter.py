@@ -24,13 +24,21 @@ def DBInsert(tender):
     #converting data types
 
     id_tender = int(tender['tenderNumber'])
+    print(id_tender)
     dt_start = tender['tenderStart'].split(' ')[-1]
-    dt_end = tender['tenderEnd'].split(' ')[-2]
+    print(dt_start)
+    dt_end = tender['tenderEnd'].split(' ')[-1][:10]
+    print(dt_end)
     name_tender = tender['tenderName']
+    print(name_tender)
     host_tender = tender['tenderOwner']
+    print(host_tender)
     edrpou = tender['tenderOwnerID']
-    price = priceCleanUp(tender['tenderPrice'].split('грн')[0])
+    print(edrpou)
+    price = tender['tenderPrice'].split('грн')[0]
+    print(price)
     link_tender = tender['tenderPageLink']
+    print(link_tender)
     
     try:
         db = cx_Oracle.connect(conndata)
